@@ -28,6 +28,8 @@ s r0 CompressorTank RatioLiquidCarbonDioxide
 bgtz r0 Idle
 s r0 CompressorTank RatioLiquidPollutant 
 bgtz r0 Idle 
+s r0 HabAirTank Pressure 
+bgt r0 30000 Idle 
 
 j EmptyCompressor 
 
