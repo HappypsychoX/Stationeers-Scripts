@@ -1,0 +1,32 @@
+define Door 337416191
+define Button 491845673
+
+start:
+yield
+
+l r0 -1252983604 HASH("Exterior Sensor") Temperature
+bgt r0 273 DayMode
+j NightMode
+
+DayMode:
+sb Door Open 1
+j start
+
+NightMode:
+lbn r0 Button HASH("East Door Button") Setting 1
+bgtz r0 OpenEastDoor
+lbn r0 Button HASH("West Door Button") Setting 1
+bgtz r0 OpenWestDoor
+OpenEastDoor:
+sbn Door HASH("East Door") Open 1
+yield
+yield
+sbn Door HASH("East Door") Open 0
+j start
+
+OpenWestDoor:
+sbn Door HASH("West Door") Open 1
+yield
+yield
+sbn Door HASH("West Door") Open 0
+j start
