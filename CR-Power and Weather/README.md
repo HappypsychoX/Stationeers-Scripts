@@ -3,10 +3,10 @@
 ## Overview
 A multifunction script to be used in a control room. Handles the following tasks:
 * Monitors battery charge and runs backup generator as needed
-* Outputs battery charge through data channels
+* Outputs battery Alarm through data channels
 * Monitors the weather station
 * Outputs weather data through data channels
-* Ouputs Alarms through data channels
+* Ouputs weather Alarms through data channels
 
 ### Used data channels:
 
