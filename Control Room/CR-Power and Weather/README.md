@@ -12,7 +12,7 @@ A multifunction script to be used in a control room. Handles the following tasks
 
 * Channel 0: Alarm Codes (see [Alarm System](#Alarm-System))
 * Channel 1: Weather Station - TimeToNextWeatherEvent
-* Channel 2: Battery Array -  Charge (Average)
+* Channel 2: Battery Array -  Charge (Average) (Depricate?)
 
 ### TODO:
 
