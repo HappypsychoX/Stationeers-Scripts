@@ -5,6 +5,7 @@ A multifunction script to be used in a control room. Handles the following tasks
 * Outputs battery charge through data channels
 * Monitors the weather station
 * Outputs weather data through data channels
+* Ouputs Alarms through data channels
 
 #### Used data channels:
 * Channel 0: Alarm Codes (see [Alarm System](#Alarm-System))
@@ -32,6 +33,9 @@ The Alarm system.
 #### Alarm Color Codes:
 * Red: 4
 * Yellow: 5
+* Green: 2
+* Blue: 0
+* Orange: 3
 
 #### Decipher Alarm codes
     l r0 'Alarm Code' # ex:4.23
