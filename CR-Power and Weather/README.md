@@ -16,7 +16,7 @@ A multifunction script to be used in a control room. Handles the following tasks
 
 ### TODO:
 
-- [ ] Alarm system
+- [x] Alarm system
 - [ ] power data output to monitors
   - [x] PowerPotential
   - [x] PowerActual
