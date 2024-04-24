@@ -1,6 +1,6 @@
 # Stationeers-Scripts
 
-* [Mars Compressed Air](https://github.com/HappypsychoX/Stationeers-Scripts/blob/main/Mars%20Compressed%20Air)
+* [Mars Air Compressor](https://github.com/HappypsychoX/Stationeers-Scripts/tree/main/Mars-Air%20Compressor)
 
 ## Mars Compressed Air:
 
