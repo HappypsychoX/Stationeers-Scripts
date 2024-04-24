@@ -1,4 +1,4 @@
-# Control Room - Power and Weather
+# Control Room - Batteries and Weather
 
 ## Overview
 A multifunction script to be used in a control room. Handles the following tasks:
