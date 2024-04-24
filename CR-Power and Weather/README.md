@@ -17,10 +17,11 @@ A multifunction script to be used in a control room. Handles the following tasks
 ### TODO:
 
 - [ ] Alarm system
-- [ ] power data putput to monitors
-  - [ ] PowerPotential
-  - [ ] PowerActual
-  - [ ] Charge (graph)
+- [ ] power data output to monitors
+  - [x] PowerPotential
+  - [x] PowerActual
+  - [x] Charge (graph)
+  - [ ] Time Remaining
   
 <a name="Alarm-System" />
 
