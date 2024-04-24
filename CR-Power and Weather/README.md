@@ -6,17 +6,24 @@ A multifunction script to be used in a control room. Handles the following tasks
 * Monitors the weather station
 * Outputs weather data through data channels
 
+#### Used data channels:
+* Channel 0: Alarm Codes (see [Alarm System](#Alarm-System))
+* Channel 1: Weather Station - TimeToNextWeatherEvent
+* Channel 2: Battery Array -  Charge (Average)
+
 #### TODO:
 * Alarm system
 * power data putput to monitors
   * PowerPotential
   * PowerActual
   * Charge (graph)
+  
+<a name="Alarm-System" />
 
-#### Used data channels:
-* Channel 0: Weather Station - Mode (Depricate and use for alarm code)
-* Channel 1: Weather Station - TimeToNextWeatherEvent
-* Channel 2: Battery Array -  Charge (Average)
+## Alarm System 
+
+
+The Alarm system.
 
 #### Alarm Sound Codes 
 * StormIncoming 18
