@@ -10,6 +10,7 @@ define Co2Tank HASH("Co2 Compressor Tank")
 define HabO2Tank HASH("Hab O2 Tank")
 define HabCo2Tank HASH("Hab Co2 Tank")
 
+alias SetTemp r7
 alias CurrentLight r8
 alias CompressorPressure r9
 alias HabTankPressure r10
@@ -18,59 +19,65 @@ alias CurrentTank r12
 alias CurrentHabTank r13
 alias CurrentPump r14
 alias CurrentVent r15
+
 start:
 yield
 
-l r0 Sensor Temperature
-s -815193061 HASH("Exterior Temp Display") Setting r0
+lbn Temp Sensor HASH("Exterior Sensor") Temperature 1
+sbn -815193061 HASH("Exterior Temp Display") Setting Temp
 
 beq CurrentTank O2Tank SetCo2
 j SetO2
 
 Run:
-l CompressorPressure Tank CurrentTank Pressure
-l HabTankPressure  CurrentHabTank  Pressure
+
+lbn CompressorPressure Tank CurrentTank Pressure 1
+lbn HabTankPressure Tank CurrentHabTank  Pressure 1
 # Check if room in compressor and if temp is ok
-slt r0 233 #-40C
+sgt r0 Temp 293 #20c
+breq CurrentTank Co2Tank 2
+slt r0 Temp 233 #-40c
 slt r1 CompressorPressure 5000
 add r0 r0 r1
 beq r0 2 RunCompressor
 
-
+blt CompressorPressure 1500 Idle
 bgt HabTankPressure 30000 Idle
 # Check if tank is clean.
-s r0 CompressorTank RatioPollutant
+lbn r0 Tank CurrentTank RatioPollutant 1
 bgtz r0 Idle
-s r0 CompressorTank RatioLiquidPollutant
+lbn r0 Tank CurrentTank RatioLiquidPollutant 1
 bgtz r0 Idle
 #if current tank is Co2 skip the other checks
 beq CurrentTank Co2Tank EmptyCompressor
 
-s r0 CompressorTank RatioCarbonDioxide
+lbn r0 Tank CurrentTank RatioCarbonDioxide 1
 bgtz r0 Idle
-s r0 CompressorTank RatioLiquidCarbonDioxide
+lbn r0 Tank CurrentTank RatioLiquidCarbonDioxide 1
 bgtz r0 Idle
 
 j EmptyCompressor
 
 RunCompressor:
-s Pump CurrentPump On 0
-s Vent CurrentVent On 1
-s 1944485013 HASH("Compressor Light") Color 4 # Red
+s db Setting 2
+sbn Pump CurrentPump On 0
+sbn Vent CurrentVent On 1
+sbn 1944485013 CurrentLight Color 4 # Red
 beq CurrentTank O2Tank SetCo2
 j start
 
 EmptyCompressor:
-s Pump CurrentPump On 1
-s Vent CurrentVent On 0
-s 1944485013 HASH("Compressor Light") Color 2 # Green
+sbn Pump CurrentPump On 1
+sbn Vent CurrentVent On 0
+sbn 1944485013 CurrentLight Color 2 # Green
 beq CurrentTank O2Tank SetCo2
 j start
 
 Idle:
-s Pump CurrentPump On 0
-s Vent CurrentVent On 0
-s 1944485013 HASH("Compressor Light") Color 5 # Yellow
+s db Setting 4
+sbn Pump CurrentPump On 0
+sbn Vent CurrentVent On 0
+sbn 1944485013 CurrentLight Color 5 # Yellow
 beq CurrentTank O2Tank SetCo2
 j start
 
@@ -78,8 +85,9 @@ SetO2:
 move CurrentTank O2Tank
 move CurrentHabTank HabO2Tank
 move CurrentPump HASH("O2 Output Pump")
-move CurrentVent HASH(O2 Vent)
+move CurrentVent HASH("O2 Vent")
 move CurrentLight HASH("O2 Compressor Light")
+s db Setting CurrentTank
 j Run
 SetCo2:
 move CurrentTank Co2Tank
@@ -87,4 +95,5 @@ move CurrentHabTank HabCo2Tank
 move CurrentPump HASH("Co2 Output Pump")
 move CurrentVent HASH("Co2 Vent")
 move CurrentLight HASH("Co2 Compressor Light")
+s db Setting CurrentTank
 j Run
