@@ -4,8 +4,6 @@ define Tank 272136332
 define Sensor -1252983604
 define Vent 938836756
 define Pump -321403609
-define LiquidTank 1988118157
-define Drain 1687692899
 
 define O2Tank HASH("O2 Compressor Tank")
 define Co2Tank HASH("Co2 Compressor Tank")
@@ -42,7 +40,7 @@ slt r0 Temp 233 #-40c
 slt r1 CompressorPressure 5000
 add r0 r0 r1
 # Check for too much liquid
-l r1 Tank CurrentTank VolumeOfLiquid 
+l r1 Tank CurrentTank VolumeOfLiquid
 slt r1 r1 1
 add r0 r0 r1
 beq r0 3 RunCompressor
