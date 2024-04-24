@@ -3,4 +3,5 @@
 * [Mars Compressed Air](https://github.com/HappypsychoX/Stationeers-Scripts/blob/main/Mars%20Compressed%20Air)
 
 ## Mars Compressed Air:
-Pulls in cold mars atmosphere and compresses to remove pollutant and CO2 before pushing to clean tank.
+
+Uses Pase Change mechanics to fill and maintain a tank of cold O2/N2 and a tank of mostly Co2 for base pressurization.
