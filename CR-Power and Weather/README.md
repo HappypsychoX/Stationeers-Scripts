@@ -14,7 +14,7 @@ A multifunction script to be used in a control room. Handles the following tasks
   * Charge (graph)
 
 #### Used data channels:
-* Channel 0: Weather Station - Mode
+* Channel 0: Weather Station - Mode (Depricate and use for alarm code)
 * Channel 1: Weather Station - TimeToNextWeatherEvent
 * Channel 2: Battery Array -  Charge (Average)
 
@@ -27,8 +27,8 @@ A multifunction script to be used in a control room. Handles the following tasks
 * Yellow: 5
 
 #### Decipher Alarm codes
-    l r0 'Alarm Code' # ex:1.4
-    Trunc r1 r0 # gives sound code
-    sub r0 r0 r1 # gives color code
+    l r0 'Alarm Code' # ex:4.23
+    Trunc r1 r0 # gives color code
+    sub r0 r0 r1 # gives sound code
     
 
