@@ -1,1 +1,22 @@
+alias WeatherStation d0 
+alias Memory d1 
+alias Generator d2
 
+define Battery -1388288459
+define MinCharge 2000000
+start:
+yield
+
+
+# Weather 
+l r0 WeatherStation Mode 
+l r0 WeatherStation NextWeatherEventTime 
+s Memory:0 Channel1 r0 
+
+# Backup Power
+lb r0 Battery Charge 0
+s Memory:0 Channel2 r0
+slt r0 r0 MinCharge 
+s Generator On r0 
+
+j start 
