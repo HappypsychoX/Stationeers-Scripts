@@ -3,18 +3,22 @@ alias O2Pump d1
 alias Co2Pump d2 
 alias OcSensor d3 
 
+define DesiredCo2 5
+define DesiredPressure 80
+define DesiredTemp 298
+
 start:
 yield
 
 # Pressurization and Temp Control 
 l r0 Sensor Temperature 
-sgt r0 r0 298 #25C
+sgt r0 r0 DesiredTemp
 l r1 Sensor Pressure 
-slt r1 r1 80
+slt r1 r1 DesiredPressure
 add r0 r0 r1
 s O2Pump On r0 
 l r0 Sensor RatioCarbonDioxide 
-slt r0 r0 5
+slt r0 r0 DesiredCo2
 s Co2Pump On r0 
 
 #Light Control 
