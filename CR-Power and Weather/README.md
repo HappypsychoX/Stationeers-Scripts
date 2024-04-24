@@ -23,10 +23,9 @@ A multifunction script to be used in a control room. Handles the following tasks
 
 ## Alarm System 
 
+The alarm system outputs alarm codes on the data network through the Memory unit . The alarm code consists of a whole number, representing the alarm color, and a fractional number, representing the alarm sound. Take for example code 4.23, the whole number (4) represents a color of Red. The number after the decimal (23), represents the sound file for Low Power. These values can be written to lights and speaker for audio/visual indicators of monitored conditions.
 
-The Alarm system.
-
-#### Alarm Sound Codes 
+#### Alarm Sound Codes: 
 * StormIncoming 18
 * Low Power: 23
   
