@@ -1,0 +1,48 @@
+
+alias lightSensor d0
+alias generator d1
+alias OSensor d2
+
+#Solar Panel hash
+define panel -1545574413
+define battery -1388288459
+define display -815193061
+start:
+s lightSensor Mode 2
+yield
+l r0 lightSensor Horizontal
+l r1 lightSensor Vertical
+#set Offset
+sub r0 r0 270
+sub r1 90 r1
+sb panel Horizontal r0
+sb panel Vertical r1
+l r0 lightSensor SolarIrradiance
+not r0 r0
+sbn 1514476632 HASH("Outdoor Light") On r0
+l r0 OSensor Quantity
+sbn 555215790 HASH("Room Light") On r0
+sbn display HASH("PowerP Display") On r0
+sbn display HASH("PowerA Display") On r0
+
+lb r0 battery PowerPotential Average
+sbn display HASH("PowerP Display") Setting r0
+lb r0 battery PowerActual Average
+sbn display HASH("PowerA Display") Setting r0
+lb r0 battery Charge Average
+s db Setting r0
+blt r0 3000000 RunGenerator
+s generator On 0
+sbn 1944485013 HASH("Generator Light") Color 2
+j CheckFuel
+
+RunGenerator:
+s generator On 1
+sbn 1944485013 HASH("Generator Light") Color 5
+j CheckFuel
+
+CheckFuel:
+ls r0 generator 0 Quantity
+bnez r0 start
+sbn 1944485013 HASH("Generator Light") Color 4
+j start
